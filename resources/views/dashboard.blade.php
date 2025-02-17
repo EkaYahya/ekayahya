@@ -4,16 +4,16 @@
 
 @section('content')
 
-@foreach ($undangan as $undangan)
+
 <div class="bg-primary-light min-h-screen p-6">
 <div class="relative w-full mx-auto py-20">
     <!-- Background Image -->
-    <div class="relative">
+    <!-- <div class="relative">
+    @foreach ($undangan as $undangan)
         @foreach($settings_events as $event)
         <img src="{{ $event->image_url ?? 'https://via.placeholder.com/250x150' }}" alt="Wedding Image" class="w-full h-auto rounded-lg shadow-md">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-50 rounded-lg"></div>
         
-        <!-- Overlay Card -->
         <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 opacity-90 w-10/12 max-w-sm bg-blue-900 text-white rounded-lg shadow-xl">
             <div class="p-4">
             <div class="flex flex-col items-center text-center space-y-2">
@@ -34,7 +34,8 @@
         </div>
         </div>
         @endforeach
-    </div>
+        @endforeach
+    </div> -->
     <!-- Menu Cards -->
     <div class="grid grid-cols-2 gap-4">
         <!-- Card 1: Data Tamu -->
@@ -220,7 +221,7 @@
         </div>
     </div>
 </div>
-@endforeach
+
 @endsection
 
 <script>
