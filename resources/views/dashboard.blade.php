@@ -8,7 +8,7 @@
 <div class="bg-primary-light min-h-screen p-6">
 <div class="relative w-full mx-auto py-20">
     <!-- Background Image -->
-    <!-- <div class="relative">
+    <div class="relative">
     @foreach ($undangan as $undangan)
         @foreach($settings_events as $event)
         <img src="{{ $event->image_url ?? 'https://via.placeholder.com/250x150' }}" alt="Wedding Image" class="w-full h-auto rounded-lg shadow-md">
@@ -35,7 +35,7 @@
         </div>
         @endforeach
         @endforeach
-    </div> -->
+    </div>
     <!-- Menu Cards -->
     <div class="grid grid-cols-2 gap-4">
         <!-- Card 1: Data Tamu -->
