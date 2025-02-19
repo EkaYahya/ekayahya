@@ -34,9 +34,12 @@
             <button id="close-modal" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                 Tutup
             </button>
+            <!-- Tombol untuk mencetak QR Code -->
+            <button id="printQrButton" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Cetak QR Code
+            </button>
         </div>
     </div>
-
     
     <!-- Modal Konfirmasi Kehadiran -->
     <div id="confirmationModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
@@ -89,7 +92,6 @@
         });
 
         // Menangani pemindaian QR Code
-        // Menangani pemindaian QR Code
         function onScanSuccess(decodedText, decodedResult) {
             const url = decodedText;
             const regex = /\/guests\/([a-z0-9\-]+)\/update-attendance/;
@@ -141,6 +143,11 @@
         
                         // Tampilkan modal
                         document.getElementById('attendance-modal').classList.remove('hidden');
+
+                        // Set href for print QR button
+                        document.getElementById('printQrButton').onclick = function() {
+                            window.location.href = `/guests/${slug}/print-qr`;
+                        };
                     } else if (response.status === 400) {
                         alert(data.message);
                     } else {
@@ -267,12 +274,12 @@
                 const videoElement = document.querySelector("#reader video");
                 const qrShadedRegion = document.getElementById('qr-shaded-region');
                 if (videoElement) {
-                    // Memberikan kelas 'rounded-xl' menggunakan Tailwind CSS
+                    // Memberikan kelas 'rounded-2xl' menggunakan Tailwind CSS
                     videoElement.classList.add("rounded-2xl");
                 }
 
                 if(qrShadedRegion) {
-                    // Memberikan kelas 'rounded-xl' menggunakan Tailwind CSS
+                    // Memberikan kelas 'rounded-2xl' menggunakan Tailwind CSS
                     qrShadedRegion.style.bordercolor = 'transparent'; 
                 }
                 videoStream = stream;
@@ -280,8 +287,6 @@
             .catch((error) => {
                 console.error("Error starting QR code scanner:", error);
             });
-
-      
 
             isScannerRunning = true; 
         }
@@ -307,22 +312,22 @@
         };
 
         document.addEventListener('DOMContentLoaded', function () {
-    const updateButton = document.querySelector('[data-target="#confirmationModal"]');
-    const confirmationModal = document.getElementById('confirmationModal');
+            const updateButton = document.querySelector('[data-target="#confirmationModal"]');
+            const confirmationModal = document.getElementById('confirmationModal');
 
-    if (updateButton && confirmationModal) {
-        updateButton.addEventListener('click', function () {
-            confirmationModal.classList.add('show');
-            confirmationModal.style.display = 'block';
-            document.body.classList.add('modal-open');
-        });
+            if (updateButton && confirmationModal) {
+                updateButton.addEventListener('click', function () {
+                    confirmationModal.classList.add('show');
+                    confirmationModal.style.display = 'block';
+                    document.body.classList.add('modal-open');
+                });
 
-        confirmationModal.querySelector('.close').addEventListener('click', function () {
-            confirmationModal.classList.remove('show');
-            confirmationModal.style.display = 'none';
-            document.body.classList.remove('modal-open');
+                confirmationModal.querySelector('.close').addEventListener('click', function () {
+                    confirmationModal.classList.remove('show');
+                    confirmationModal.style.display = 'none';
+                    document.body.classList.remove('modal-open');
+                });
+            }
         });
-    }
-});
     </script>
 @endsection
